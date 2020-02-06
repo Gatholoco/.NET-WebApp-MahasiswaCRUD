@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WebMahasiswa.Models.MataKuliahVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-wrap title-page">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <h3>Data MataKuliah</h3>
+                @Html.ActionLink("  Create New", "Create", "MataKuliahVM", new { @class = "btn btn-success  glyphicon glyphicon-plus" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-wrap">
+    <div class="table-container">
+        <table class="table cell-border display no-wrap">
+            <thead>
+                <tr>
+                    <th>
+                        Nama Mahasiswa
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MataKuliah)
+                        </td>
+                        <td>
+                            @Html.ActionLink(" Edit", "Edit", "MataKuliahVM", new { id = item.IdMataKuliah }, new { @class = "btn btn-default glyphicon glyphicon-edit" })
+                            @Html.ActionLink(" Detail", "Details", "MataKuliahVM", new { id = item.IdMataKuliah }, new { @class = "btn btn-info glyphicon glyphicon-eye-open" })
+                            @Html.ActionLink(" Delete", "Delete", "MataKuliahVM", new { id = item.IdMataKuliah }, new { @class = "btn btn-danger glyphicon glyphicon-erase" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

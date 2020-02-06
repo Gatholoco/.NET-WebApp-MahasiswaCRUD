@@ -1,0 +1,83 @@
+﻿@model WebMahasiswa.Models.NilaiModels
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-wrap title-page">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <h3>Data Nilai</h3>
+                @Html.ActionLink("  Create New", "Create", "NilaiVM", new { @class = "btn btn-success  glyphicon glyphicon-plus" })
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-wrap white-wrapper">
+    <div class="row">
+        @using (Html.BeginForm("Index", "NilaiVM", FormMethod.Get))
+        {
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label>Nama Mahasiswa:</label>
+                    @Html.TextBoxFor(model => model.F_NamaMahasiswa, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label>Mata Kuliah:</label>
+                    @Html.DropDownListFor(model => model.F_MataKuliah, Model.MataKuliahList, "", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <label style="display:block;">&nbsp;</label>
+                <button id="btnFilter" type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="container-wrap">
+    <div class="table-container">
+        <table id="mydata" class="table cell-border display no-wrap">
+            <thead>
+                <tr>
+                    <th>Nama Mahasiswa</th>
+                    <th>Mata Kuliah</th>
+                    <th>Nilai</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.tempNIlaiVMs)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NamaMahasiswa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MataKuliah)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nilai)
+                        </td>
+                        <td>
+                            @Html.ActionLink(" Edit", "Edit", "NilaiVM", new { id = item.IdNilai }, new { @class = "btn btn-default glyphicon glyphicon-edit" })
+                            @Html.ActionLink(" Detail", "Details", "NilaiVM", new { id = item.IdNilai }, new { @class = "btn btn-info glyphicon glyphicon-eye-open" })
+                            @Html.ActionLink(" Delete", "Delete", "NilaiVM", new { id = item.IdNilai }, new { @class = "btn btn-danger glyphicon glyphicon-erase" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript" language="javascript">
+    </script>
+}
+

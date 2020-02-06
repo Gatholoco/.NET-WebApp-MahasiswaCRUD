@@ -1,0 +1,61 @@
+﻿@model WebMahasiswa.Models.NilaiModels
+
+    @{
+        ViewBag.Title = "Edit";
+    }
+
+    <h2>Edit</h2>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>NilaiVM</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.id_Nilai);
+        <div class="form-group">
+            <label class="control-label col-md-2">Nama Mahasiswa:</label>
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.IdMahasiswa, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IdMahasiswa, "", new { @class = "text-danger" })*@
+                @Html.DropDownListFor(model => model.F_NamaMahasiswa, Model.NamaMahasiswaList, "", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Mata Kuliah:</label>
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.IdMataKuliah, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IdMataKuliah, "", new { @class = "text-danger" })*@
+                @Html.DropDownListFor(model => model.F_MataKuliah, Model.MataKuliahList, "", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Nilai:</label>
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Nilai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nilai, "", new { @class = "text-danger" })*@
+                @Html.TextBoxFor(model => model.i_Nilai, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
